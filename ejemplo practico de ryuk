@@ -1,0 +1,30 @@
+Ejemplo practico de ryuk-->
+ Vamos a documentar un caso real de un ataque ocurrido en septiembre del 2020 a en septiembre de 2020 la cadena hospitalaria Universal Health Services 
+(UHS) (EE.UU., sector salud).
+La siguiente cronología, basada en análisis forenses reportados, ilustra las fases técnicas de un ataque Ryuk típico: 
+1 . ACCESO: . Los atacantes envían correos electrónicos dirigidos (spearphishing) con documentos Office maliciosos. Al abrir el adjunto, 
+se ejecuta una macro que lanza PowerShell para descargar el troyano Emotet. Este actua como dropper, cunado se ejecuta descarga y ejecuta el troyano
+Trickbot.
+2. Reconocimiento y robo de credenciales: Una vez TrickBot está activo en una estación infectada, usa sus módulos (incluyendo variantes de Mimikatz) 
+para extraer credenciales de administrador de la memoria y navegadores. El atacante utiliza estas credenciales para acceder a controladores de dominio
+y se copian herramientas legítimas para el reconocimiento interno :interno: por ejemplo AdFind.exe (herramienta de enumeración de Active Directory), 
+scripts por lotes (batch) y utilidades como 7-Zip para empaquetar datos.
+
+3.MOVIMIENTO LATERAL Y DESPLIEGUE INICIAL DE RYUK: Con las credenciales privilegiadas el atacante prueba conexiones RDP y comparte credenciales 
+administrativas para seguirse propagando.Coloca en esas rutas ocultas un script batch ( herramienta firmada PsExec.exe y el instalador de Ryuk ( COPY.bat ), 
+la Ryuk.exe ). Al ejecutar el batch, PsExec usa las credenciales robadas para abrir shells remotos en varios servidores objetivo,
+copia el ejecutable de Ryuk en carpetas temporales y lo ejecuta remotamente. 
+ 
+4.EJECUCION: El dropper se copia a si mismo con un nombre aleatoria de 5 letras en las carpetas de los usuarios.Luego, detiene servicios de seguridad 
+(uso de net stop ) y elimina procesos asociados a antivirus (con taskkill ) para deshabilitar la proteccion de la maquina victima. Crea tambien persistencia 
+agregando clave de registro en RUN para ejecutarse al iniciar sesión.
+
+5. ELIMINCACION DE SEGURIDAD Y ENCRIPTADO DE ARCHIVOS:  Los procesos infectados ejecutan un archivo batch oculto (por ejemplo C:\Users\Public\window.bat ) 
+que invoca vssadmin para borrar todas las copias sombra del sistema ( vssadmin delete shadows /all /quiet ) y reduce el espacio de shadow storage en todas las unidades.
+Para luego borrar archivos de respaldo u formatos comunes en las particiones locales.  Con los respaldos eliminados, Ryuk procedio a cifrar los datos. Y en cada carpeta 
+apareció la nota de rescate RyukReadMe.txt con instrucciones de pago.
+
+ el ataque forzó desconectar toda la red IT de las sedes afectadas; se suspendieron sistemas de registro clínico e incluso ambulancias fueron redirigidas a otros hospitales 
+(los médicos se vieron obligados a usar documentación en papel). El incidente retrasó la facturación hospitalaria y provocó una caída de ingresos por servicios no prestados. 
+UHS reportó pérdidas operativas estimadas en unos $67 millones a finales de 2020 por el ataque. 
+
