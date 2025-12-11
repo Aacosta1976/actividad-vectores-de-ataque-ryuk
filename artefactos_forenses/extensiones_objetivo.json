@@ -1,0 +1,21 @@
+{
+  "target_description": "Extensiones de archivo prioritarias para el cifrado de Ryuk",
+  "category": "High Value Targets",
+  "extensions": [
+    ".sql",
+    ".mdb",
+    ".accdb",
+    ".vdi",
+    ".vmdk",
+    ".xls",
+    ".xlsx",
+    ".doc",
+    ".docx",
+    ".pdf",
+    ".jpg",
+    ".zip",
+    ".rar",
+    ".backup"
+  ],
+  "note": "Ryuk busca maximizar el daño cifrando bases de datos y backups primero."
+}
