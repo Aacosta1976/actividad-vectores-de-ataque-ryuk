@@ -6,7 +6,7 @@ Este repositorio contiene los artefactos técnicos, evidencias y análisis del v
 
 ---
 
-## 📂 Estructura del Repositorio
+## Estructura del Repositorio
 
 ### 1. [Artefactos Forenses](./artefactos_forenses)
 Evidencias simuladas de una infección típica:
