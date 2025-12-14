@@ -38,3 +38,8 @@ Este material ha sido creado exclusivamente con fines académicos para la asigna
 
 ---
 **Autores:** 
+Fernández Heras, Richard 
+Kudrina, Tatiana 
+Pérez Sosa, Michelle 
+Dominguez Polo, Alvaro 
+Acosta Chirinos, Alexander 
